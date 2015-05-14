@@ -1,0 +1,21 @@
+CACHE MANIFEST
+# v6
+CACHE:
+/index.html
+/sw.js
+/js/app.js
+/js/reveal.min.js
+/js/angular.min.js
+/lib/css/zenburn.css
+/lib/js/head.min.js
+/css/print/paper.css
+/icons/css/font-awesome.min.css
+/icons/fonts/fontawesome-webfont.woff?v=4.3.0
+/icons/fonts/fontawesome-webfont.woff2?v=4.3.0
+/icons/fonts/fontawesome-webfont.ttf?v=4.3.0
+/css/theme/material.css
+/css/reveal.css
+/plugin/notes/notes.js
+/plugin/zoom-js/zoom.js
+NETWORK:
+*

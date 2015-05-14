@@ -94,6 +94,17 @@ module.exports = function(grunt) {
 		connect: {
 			server: {
 				options: {
+					middleware: function(connect, options, middlewares) {
+						middlewares.unshift(
+							function(req, res, next) {
+								if (req.url === "/cache.manifest") {
+									res.setHeader('Content-Type', 'text/cache-manifest');
+								}
+								next();
+							}
+						);
+						return middlewares;
+					},
 					port: port,
 					base: '.',
                     livereload: true,

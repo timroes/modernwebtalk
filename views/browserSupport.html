@@ -1,0 +1,36 @@
+<div class="browser-support">
+	<table>
+		<tr>
+			<td><img src="/imgs/chrome.png" ng-class="{ nosupport: !chrome }"> <sup>42</sup></td>
+			<td><img src="/imgs/firefox.png" ng-class="{ nosupport: !ff }"> <sup>38</sup></td>
+			<td><img src="/imgs/ie.png" ng-class="{ nosupport: !ie }"> <sup>11</sup></td>
+			<td><img src="/imgs/safari.png" ng-class="{ nosupport: !safari }"> <sup>8</sup></td>
+		</tr>
+		<tr>
+			<td ng-class="{ part: chromepart }">
+				{{ chrome }}
+				<span ng-show="!chrome">-</span>
+				<span ng-show="chromepart">partial</span>
+				<span ng-show="chromepre">prefix</span>
+			</td>
+			<td ng-class="{ part: ffpart }">
+				{{ ff }}
+				<span ng-show="!ff">-</span>
+				<span ng-show="ffpart">partial</span>
+				<span ng-show="ffpre">prefix</span>
+			</td>
+			<td ng-class="{ part: iepart }">
+				{{ ie }}
+				<span ng-show="!ie">-</span>
+				<span ng-show="iepart">partial</span>
+				<span ng-show="iepre">prefix</span>
+			</td>
+			<td ng-class="{ part: safaripart }">
+				{{ safari }}
+				<span ng-show="!safari">-</span>
+				<span ng-show="safaripart">partial</span>
+				<span ng-show="safaripre">prefix</span>
+			</td>
+		</tr>
+	</table>
+</div>

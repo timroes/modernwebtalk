@@ -16,9 +16,9 @@
     * Web DB ("deprecated")
     * Indexed DB
 
-  * Web Audio API
-
   * WebGL
+
+  * Web Audio API
 
   * File API (z.B. Mega)
 

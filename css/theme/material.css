@@ -68,7 +68,7 @@ body {
 .reveal h2.continue {
   text-align: left;
   color: #999;
-  font-size: 1.2rem;
+  font-size: 1.5rem;
 }
 
 .fullscreen-button:hover {
@@ -84,6 +84,8 @@ textarea.code {
   width: 100%;
   min-height: 10rem;
   font-family: monospace;
+  font-size: 1.5rem;
+  margin: 0.3em 0;
 }
 
 .reveal label {
@@ -281,9 +283,7 @@ textarea.code {
  *********************************************/
 .reveal section img {
   margin: 15px 0px;
-  background: rgba(255, 255, 255, 0.12);
-  border: 4px solid #222;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15); }
+}
 
 .reveal a img {
   -webkit-transition: all 0.15s linear;
@@ -339,3 +339,90 @@ textarea.code {
  *********************************************/
 .reveal .slide-number {
   color: #2a76dd; }
+
+.reveal .browser-support {
+  margin-top: 5rem;
+}
+
+.reveal .browser-support table {
+  border-collapse: separate;
+  border-spacing: 1rem 0;
+}
+
+.reveal .browser-support sup {
+  font-weight: 300;
+  color: #AAA;
+  font-size: 2rem;
+  vertical-align:top;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.reveal .browser-support img {
+  width: 4rem;
+  border: none;
+  box-shadow: none;
+}
+
+.reveal .browser-support td {
+  text-align: center;
+  font-weight: bold;
+  border: none;
+  font-size: 3rem;
+  position: relative;
+}
+
+.reveal .browser-support span {
+  font-size: 2rem;
+  color: #666;
+  font-weight: 300;
+  display: block;
+}
+
+.reveal .browser-support td.part {
+  font-weight: 300;
+}
+
+.reveal .browser-support .nosupport {
+  opacity: 0.3;
+}
+
+.reveal .browser-support.lessspace {
+  margin-top: 1rem;
+}
+
+
+.reveal .footnote-support.browser-support {
+  padding-top: 2rem;
+  background-color: rgba(255, 255, 255, 0.75);
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
+
+.reveal .preface-code {
+  font-family: monospace;
+  text-align: left;
+  font-size: 1.5rem;
+  margin: 10px 0.2em;
+}
+
+.reveal .flex-slide {
+  display: flex !important;
+  flex-direction: column;
+}
+
+.reveal .flex-expand {
+  flex: 1 1 auto;
+}
+
+.reveal .source {
+  text-align: right;
+  font-size: 1.2rem;
+  color: #999;
+}
+
+.reveal .img-overlay {
+  background-color: rgba(255, 255, 255, 0.75);
+}

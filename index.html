@@ -94,6 +94,16 @@
 					</p>
 				</section>
 
+				<section>
+					<h2>App Cache</h2>
+					<browser-support ie="10" ff="3.5" chrome="4" safari="4"></browser-support>
+				</section>
+
+				<section>
+					<h2>Service Workers</h2>
+					<browser-support chrome="40" chromepart="true"></browser-support>
+				</section>
+
 				<section class="fullslide">
 					<iframe class="full" src="http://threejs.org/examples/canvas_geometry_birds.html"></iframe>
 				</section>
@@ -102,7 +112,110 @@
 					<iframe class="full" src="http://threejs.org/examples/webgl_materials_cars.html"></iframe>
 				</section>
 
+				<section>
+					<h2 class="continue">WebGL @ GitHub</h2>
+					<img src="/imgs/github-3diff.gif">
+					<p class="source">https://github.com/blog/1633-3d-file-diffs</p>
+				</section>
 
+				<section>
+					<h2>WebGL</h2>
+					<browser-support ie="11" chrome="36" ff="4" safari="8" iepre="true" ffpart="true"></browser-support>
+				</section>
+
+				<section class="title">
+					<h2>Web Audio API</h2>
+				</section>
+
+				<section ng-controller="WebAudioController" class="flex-slide">
+					<h2 class="continue">Web Audio API</h2>
+					<p class="preface-code">var ctx = new AudioContext();</p>
+					<textarea ng-model="source" class="code flex-expand"></textarea>
+					<button class="fullscreen-button" ng-click="execute()">Execute</button>
+				</section>
+
+				<section class="fullslide">
+					<iframe class="full" src="https://www.soundtrap.com/studio/"></iframe>
+				</section>
+
+				<section>
+					<h2>Web Audio API</h2>
+					<browser-support ie="Edge" chrome="34" ff="25" safari="6" safaripre="true"></browser-support>
+				</section>
+
+				<section>
+					<h2>File API</h2>
+					TODO
+				</section>
+
+				<section>
+					<h2>File API</h2>
+					<browser-support ie="10" iepart="true" ff="28" chrome="38" safari="6" safaripart="true"></browser-support>
+				</section>
+
+				<section>
+					<h2>Notification API</h2>
+					<browser-support ff="22" chrome="22" safari="6"></browser-support>
+				</section>
+
+				<section ng-controller="SpeechSynthesisController">
+					<h2>Web Speech API</h2>
+					<textarea spellcheck="false" class="code" ng-model="source"></textarea>
+					<browser-support class="lessspace" chrome="25" chromepart="true" chromepre="true" safari="7.1" safaripart="true"></browser-support>
+					<button class="fullscreen-button" ng-click="execute()">Execute</button>
+				</section>
+
+				<section style="background: url(/imgs/geolocation.png) #FFF; background-position: right bottom; background-repeat: no-repeat">
+					<h2 class="img-overlay">Geolocation API</h2>
+					<browser-support class="footnote-support" ie="9" ff="3.5" chrome="5" safari="5"></browser-support>
+				</section>
+
+				<section style="background: url(/imgs/gamepad.jpg) #FFF; background-size: cover; background-repeat: no-repeat">
+					<h2 class="img-overlay">Gamepad API</h2>
+					<browser-support class="footnote-support" ie="Edge" ff="29" chrome="25"></browser-support>
+				</section>
+
+				<section>
+					<section>
+						<h2>And More &hellip;</h2>
+						<ul>
+							<li>Clipboard API</li>
+							<li>Media Capture and Stream API</li>
+							<li>WebRTC API</li>
+							<li>Web Cryptography API</li>
+							<li>&hellip;</li>
+						</ul>
+					</section>
+
+					<section>
+						<h2>Frameworks</h2>
+					</section>
+				</section>
+
+				<section>
+					<h2>ECMAScript 6</h2>
+					<pre><code class="js">import {Point2D} from 'geometry'
+
+class Point3D extends Point2D {
+  constructor(x, y, z) {
+    super(x, y);
+    this.z = z;
+  }
+
+  toString() {
+    return "[" + x + "," + y + "," + y + "]";
+  }
+
+  static zeroPoint() {
+    return new Point3D(0, 0, 0);
+  }
+}</code></pre>
+				</section>
+
+				<section class="title">
+					<h2 class="teal">Questions?</h2>					
+					<p>www.timroes.de</p>
+				</section>
 
 			</div>
 

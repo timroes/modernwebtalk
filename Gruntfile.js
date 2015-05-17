@@ -1,6 +1,12 @@
+var bodyParser = require('body-parser');
+
 /* global module:false */
 module.exports = function(grunt) {
-	var port = grunt.option('port') || 8000;
+
+	var port = grunt.option('port') || 4123;
+
+	var swCode = "";
+
 	// Project configuration
 	grunt.initConfig({
 		pkg: grunt.file.readJSON('package.json'),
@@ -96,7 +102,21 @@ module.exports = function(grunt) {
 				options: {
 					middleware: function(connect, options, middlewares) {
 						middlewares.unshift(
+							bodyParser.json(),
 							function(req, res, next) {
+								if (req.url === "/sw/store") {
+									swCode = req.body.code;
+									res.statusCode = 200;
+									res.end();
+									return;
+								}
+								if (req.url === '/serviceWorker.js') {
+									console.log('deliver the following service worker:');
+									console.log(swCode);
+									res.setHeader('Content-Type', 'application/javascript');
+									res.end(swCode);
+									return;
+								}
 								if (req.url === "/cache.manifest") {
 									res.setHeader('Content-Type', 'text/cache-manifest');
 								}
@@ -107,8 +127,9 @@ module.exports = function(grunt) {
 					},
 					port: port,
 					base: '.',
-                    livereload: true,
-                    open: true
+					livereload: true,
+					open: true,
+					hostname: 'localhost'
 				}
 			}
 		},
@@ -125,9 +146,9 @@ module.exports = function(grunt) {
 		},
 
 		watch: {
-            options: {
-                livereload: true
-            },
+			options: {
+				livereload: true
+			},
 			js: {
 				files: [ 'Gruntfile.js', 'js/reveal.js' ],
 				tasks: 'js'
@@ -140,9 +161,9 @@ module.exports = function(grunt) {
 				files: [ 'css/reveal.scss' ],
 				tasks: 'css-core'
 			},
-            html: {
-                files: [ 'index.html']
-            }
+			html: {
+				files: [ 'index.html']
+			}
 		}
 
 	});

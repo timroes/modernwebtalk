@@ -1,10 +1,7 @@
-var app = angular.module('talk', []);
+var app = angular.module('talk', ['LocalStorageModule']);
 
-app.run(function() {
-	navigator.serviceWorker.register('/sw.js')
-	.catch(function(error) {
-		window.alert('Could not register Service Worker.');
-	});
+app.run(function($window) {
+
 });
 
 app.directive('browserSupport', function() {
@@ -62,35 +59,55 @@ app.controller('MainController', function($scope) {
 		document.documentElement.webkitRequestFullscreen();
 	};
 
-});
+	$scope.showIframes = false;
 
-app.controller('ServiceWorkerController', function($scope, $http) {
-
-	$scope.$watch('code', function(code) {
-		console.log("code changed");
-		if (code && navigator.serviceWorker.controller) {
-			navigator.serviceWorker.controller.postMessage({ code: code });
+	Reveal.addEventListener('slidechanged', function(ev) {
+		if (ev.currentSlide.id === "preloadIframes") {
+			$scope.$apply(function() {
+				$scope.showIframes = true;
+			});
 		}
 	});
 
+});
+
+app.controller('ServiceWorkerController', function($scope, $http, localStorageService) {
+
+	var lsKey = "modernweb.swcode." + new Date().toLocaleDateString();
+
+	$scope.code = localStorageService.get(lsKey);
+
 	$scope.register = function() {
-		console.log("ServiceWorker");
-		navigator.serviceWorker.register('data:application/javascript;base64,Y29uc29sZS5sb2coImhlbGxvIFdvcmxkIik7')
-		.then(function(reg) {
-			console.log('registered service worker');
-			location.reload();
-		})
-		.catch(function(reason) {
-			console.log('ServiceWorker registration failed', reason);
+		localStorageService.set(lsKey, $scope.code);
+		$http.post('/sw/store', { code: $scope.code })
+		.then(function() {
+			navigator.serviceWorker.register('/serviceWorker.js')
+			.then(function(reg) {
+				console.log("registered: %o", reg);
+				console.log(reg.active);
+			}, function(err) {
+				console.error("Error registring Service Worker");
+				console.error(err);
+			});
 		});
 	};
+
+	$scope.url = "http://api.randomuser.me/";
 
 	$scope.fetch = function() {
 		$http.get($scope.url)
 		.then(function(response) {
-			console.log(response.data);
+			$scope.fetchedData = response.data;
 		});
 	};
+});
+
+app.controller('ExecuteController', function($scope) {
+
+	$scope.execute = function() {
+		eval($scope.source);
+	};
+
 });
 
 app.controller('WebAudioController', function($scope, $http) {

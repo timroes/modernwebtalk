@@ -89,6 +89,7 @@ textarea.code {
 }
 
 .reveal label {
+  text-align: left;
   float: left;
   font-size: 0.9rem;
   color: #555;
@@ -225,8 +226,7 @@ textarea.code {
   overflow: auto;
   max-height: 400px;
   word-wrap: normal;
-  background: #3F3F3F;
-  color: #DCDCDC; }
+  background: #EEE;}
 
 .reveal table {
   margin: auto;
@@ -425,4 +425,58 @@ textarea.code {
 
 .reveal .img-overlay {
   background-color: rgba(255, 255, 255, 0.75);
+}
+
+.reveal .nomargin {
+  margin: 0;
+}
+
+.reveal button:not(.fullscreen-button) {
+  font-size: 1.2rem;
+  background: #BBB;
+  color: white;
+  border: none;
+  margin: 0;
+  padding: 0.2em 0.5em;
+  box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2),
+    0 2px 2px 0 rgba(0, 0, 0, 0.14),
+    0 1px 5px 0 rgba(0, 0, 0, 0.12);
+}
+.reveal button:hover,
+.reveal button:focus {
+  background: #009688;
+}
+.reveal input {
+  font-size: 1.2rem;
+  padding: 0.2em 0.5em;
+  margin: 0.3em 0;
+}
+
+.preface-code[ng-click]:hover {
+  color: #009688;
+  cursor: pointer;
+}
+
+.reveal .slide-overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background: rgba(42, 42, 42, 0.95);
+  color: white;
+  overflow: auto;
+}
+
+.close-btn {
+  position: fixed;
+  right: 1rem;
+  font-size: 1.4rem;
+  float: right;
+  cursor: pointer;
+  margin: 1rem;
+}
+
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
 }

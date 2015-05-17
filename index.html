@@ -19,7 +19,7 @@
 		<link rel="stylesheet" href="css/theme/material.css">
 
 		<!-- Code syntax highlighting -->
-		<link rel="stylesheet" href="lib/css/zenburn.css">
+		<link rel="stylesheet" href="lib/css/github.css">
 
 		<!-- Printing and PDF exports -->
 		<script>
@@ -35,7 +35,7 @@
 		<![endif]-->
 	</head>
 
-	<body ng-controller="MainController">
+	<body ng-controller="MainController" ng-cloak>
 
 		<div class="reveal">
 			<!-- Any section element inside of this container is displayed as a slide -->
@@ -46,10 +46,10 @@
 					<p>
 						Tim Roes
 					</p>
-					<button class="fullscreen-button" ng-click="fullscreen()">
+					<!-- <button class="fullscreen-button" ng-click="fullscreen()">
 						<i class="fa fa-desktop"></i>
 						Fullscreen
-					</button>
+					</button> -->
 				</section>
 
 				<section class="vcenter" on-show="callMe()">
@@ -62,36 +62,93 @@
 					<p>www.timroes.de</p>
 				</section>
 
-				<section>
-					<h2>Desktop vs. Web</h2>
-					<p>State of the art (limux)</p>
-					<p>Problems: (cross plattform)</p>
-					<p>Vorteile Web: Cross-plattform, UI-Performance, Sicherheit</p>
+				<section class="title">
+					<div style="display: flex; flex: 0 1 50%; min-height: 200px; justify-content: center">
+						<div style="background: url(/imgs/limux-logo.png) no-repeat center; background-size: contain; flex: 0 1 25%"></div>
+						<div class="fragment" style="background: url(/imgs/limux-text.png) no-repeat; background-size: contain; flex: 0 1 40%"></div>
+					</div>
 				</section>
 
 				<section>
+					TODO: State of the Art
+					Screenshots (Desktop Software)
+					Problems: Cross Plattform,
+					Solution: Move more to the web
+				</section>
+
+				<section class="flex-slide">
+					<h2 class="img-overlay">The Web &ndash; Yesterday</h2>
+					<div style="flex: 1 1 0; background: url(/imgs/web10.png) no-repeat center; background-size: contain">
+					</div>
+					<p class="source">www.karlsruhe.de &ndash; anno domini 1996</p>
+				</section>
+
+				<section class="flex-slide">
+					<h2>The Web &ndash; Today</h2>
+					<div style="flex: 1 1 0; background: url(/imgs/web20.png) no-repeat center; background-size: contain">
+					</div>
+					<p class="source">www.youtube.com &ndash; not so long ago</p>
+				</section>
+
+				<section class="flex-slide">
+					<h2>The Web &ndash; Tomorrow</h2>
+					<div style="flex: 1 1 0; background: url(/imgs/tinkercad.png) no-repeat center; background-size: contain">
+					</div>
+					<p class="source">Tinkercad by Autodesk</p>
+
+					<!--
+						Vorteile:
+						* Cross-Plattform Fähigkeit
+						* Cross Device Factor (Desktop, Mobile)
+						* Software Distribution bzw. Updates
+						* UI-Performance
+					-->
+				</section>
+
+				<section class="title">
+					<h2>2013 called&hellip;</h2>
+				</section>
+
+				<section class="fullslide">
+					<iframe src="http://browserquest.mozilla.org/" class="full"></iframe>
+				</section>
+
+				<section class="flex-slide" ng-controller="ExecuteController">
+					<h2>Notification API</h2>
+					<textarea ng-model="source" spellcheck="false" class="code flex-expand"></textarea>
+					<button class="fullscreen-button" ng-click="execute()">Execute</button>
+				</section>
+
+				<section>
+					<h2>Notification API</h2>
+					<browser-support ff="22" chrome="22" safari="6"></browser-support>
+				</section>
+
+				<section class="title">
 					<h2>Offlinefähigkeit</h2>
-					<p>App Cache</p>
 				</section>
 
 				<section>
-					<h2>Offlinefähigkeit</h2>
-					<p>
-						Service Workers / Browser Support
-					</p>
-				</section>
+					<h2>App Cache</h2>
+					<pre class="fragment"><code class="html" data-trim>
+&lt;html manifest="/cache.manifest"&gt;
+...
+&lt;/html&gt;
+					</code></pre>
 
-				<section ng-controller="ServiceWorkerController">
-					<h2 class="continue">Offlinefähigkeit - Service Worker</h2>
-					<p>
-						<label>serviceWorker.js</label>
-						<textarea class="code" ng-model="code" ng-model-options="{ debounce: 1000 }"></textarea>
-					</p>
-					<p>
-					<button ng-click="register()">Register ServiceWorker</button>
-						<input type="text" ng-model="url" placeholder="URL">
-						<button ng-click="fetch()">Fetch</button>
-					</p>
+					<pre class="fragment"><code class="diff" data-trim>
+CACHE MANIFEST
+
+CACHE:
+/index.html
+/css/styles.css
+
+NETWORK:
+*
+
+FALLBACK:
+/api/login /static/deny.json
+					</code></pre>
 				</section>
 
 				<section>
@@ -99,17 +156,66 @@
 					<browser-support ie="10" ff="3.5" chrome="4" safari="4"></browser-support>
 				</section>
 
+				<section ng-controller="ServiceWorkerController" class="flex-slide">
+					<div class="slide-overlay" ng-show="fetchedData">
+						<i class="close-btn fa fa-close" ng-click="fetchedData = null"></i>
+						<pre>{{ fetchedData | json }}</pre>
+					</div>
+					<h2 class="continue">Offlinefähigkeit - Service Worker</h2>
+					<label>serviceWorker.js</label>
+					<textarea class="code flex-expand" spellcheck="false" ng-model="code" ng-model-options="{ debounce: 1000 }"></textarea>
+					<div ng-click="register()" class="preface-code">navigator.serviceWorker.register('/serviceWorker.js')</div>
+					<p class="nomargin" style="display:flex">
+						<input type="text" ng-model="url" placeholder="URL" style="flex: 1 1 0">
+						<button ng-click="fetch()" style="align-self: center; margin-left: 1rem">Fetch</button>
+					</p>
+				</section>
+
 				<section>
 					<h2>Service Workers</h2>
 					<browser-support chrome="40" chromepart="true"></browser-support>
 				</section>
 
-				<section class="fullslide">
-					<iframe class="full" src="http://threejs.org/examples/canvas_geometry_birds.html"></iframe>
+				<section class="title">
+					<h2>Storage Technologies</h2>
+				</section>
+
+				<section>
+					<h2>Local Storage</h2>
+					<p>
+						<pre><code class="js" data-trim>
+window.localStorage.setItem("key", "value");
+window.localStorage.getItem("key");
+						</code></pre>
+					</p>
+					<browser-support ie="8" ff="3.5" chrome="4" safari="8"></browser-support>
+				</section>
+
+				<section>
+					<h2>IndexedDB</h2>
+					<browser-support ie="10" iepart="true" ff="16" chrome="24" safari="7.1" safaripart="true"></browser-support>
+				</section>
+
+				<section>
+					<h2>File API</h2>
+					<video src="/imgs/mega.ogv" autoplay loop></video>
+				</section>
+
+				<section>
+					<h2>File API</h2>
+					<browser-support ie="10" iepart="true" ff="28" chrome="38" safari="6" safaripart="true"></browser-support>
+				</section>
+
+				<section class="title" id="preloadIframes">
+					<h2>WebGL</h2>
 				</section>
 
 				<section class="fullslide">
-					<iframe class="full" src="http://threejs.org/examples/webgl_materials_cars.html"></iframe>
+					<iframe ng-if="showIframes" class="full" src="http://threejs.org/examples/canvas_geometry_birds.html"></iframe>
+				</section>
+
+				<section class="fullslide">
+					<iframe ng-if="showIframes" class="full" src="http://threejs.org/examples/webgl_materials_cars.html"></iframe>
 				</section>
 
 				<section>
@@ -130,32 +236,17 @@
 				<section ng-controller="WebAudioController" class="flex-slide">
 					<h2 class="continue">Web Audio API</h2>
 					<p class="preface-code">var ctx = new AudioContext();</p>
-					<textarea ng-model="source" class="code flex-expand"></textarea>
+					<textarea ng-model="source" spellcheck="false" class="code flex-expand"></textarea>
 					<button class="fullscreen-button" ng-click="execute()">Execute</button>
 				</section>
 
 				<section class="fullslide">
-					<iframe class="full" src="https://www.soundtrap.com/studio/"></iframe>
+					<iframe ng-if="showIframes" class="full" src="https://www.soundtrap.com/studio/"></iframe>
 				</section>
 
 				<section>
 					<h2>Web Audio API</h2>
 					<browser-support ie="Edge" chrome="34" ff="25" safari="6" safaripre="true"></browser-support>
-				</section>
-
-				<section>
-					<h2>File API</h2>
-					TODO
-				</section>
-
-				<section>
-					<h2>File API</h2>
-					<browser-support ie="10" iepart="true" ff="28" chrome="38" safari="6" safaripart="true"></browser-support>
-				</section>
-
-				<section>
-					<h2>Notification API</h2>
-					<browser-support ff="22" chrome="22" safari="6"></browser-support>
 				</section>
 
 				<section ng-controller="SpeechSynthesisController">
@@ -176,25 +267,21 @@
 				</section>
 
 				<section>
-					<section>
-						<h2>And More &hellip;</h2>
-						<ul>
-							<li>Clipboard API</li>
-							<li>Media Capture and Stream API</li>
-							<li>WebRTC API</li>
-							<li>Web Cryptography API</li>
-							<li>&hellip;</li>
-						</ul>
-					</section>
-
-					<section>
-						<h2>Frameworks</h2>
-					</section>
+					<h2>And More &hellip;</h2>
+					<ul>
+						<li>Clipboard API</li>
+						<li>Media Capture and Stream API</li>
+						<li>WebRTC API</li>
+						<li>Web Cryptography API</li>
+						<li>Web Workers</li>
+						<li>&hellip;</li>
+					</ul>
 				</section>
 
 				<section>
 					<h2>ECMAScript 6</h2>
-					<pre><code class="js">import {Point2D} from 'geometry'
+					<pre><code class="js" data-trim>
+import {Point2D} from 'geometry'
 
 class Point3D extends Point2D {
   constructor(x, y, z) {
@@ -209,11 +296,31 @@ class Point3D extends Point2D {
   static zeroPoint() {
     return new Point3D(0, 0, 0);
   }
-}</code></pre>
+}
+					</code></pre>
+				</section>
+
+				<section>
+					<h2>AngularJS 2 / TS 1.5</h2>
+					<pre><code class="ts" data-trim>
+@Component({
+  selector: 'my-app'
+})
+@View({
+  template: '<h1>Hello {{ name }}</h1>'
+})
+class MyAppComponent {
+  name: string;
+  
+  constructor() {
+    this.name = 'Alice';
+  }
+}
+					</code></pre>
 				</section>
 
 				<section class="title">
-					<h2 class="teal">Questions?</h2>					
+					<h2 class="teal">Questions?</h2>
 					<p>www.timroes.de</p>
 				</section>
 
@@ -225,6 +332,7 @@ class Point3D extends Point2D {
 		<script src="lib/js/head.min.js"></script>
 		<script src="js/reveal.min.js"></script>
 		<script src="js/angular.min.js"></script>
+		<script src="js/angular-local-storage.min.js"></script>
 		<script src="js/app.js"></script>
 
 		<script>

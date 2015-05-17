@@ -6,6 +6,12 @@
   * UI-Performance
   * Sicherheit
 
+* The web "Yersterday"
+
+* The web "Today"
+  * WebSockets
+  * SPA / Ajax
+
 * Technologien
   * Offline Cache (HTML5 Manifest)
 
@@ -34,3 +40,8 @@
   * ES 6 / TS 1.5
 
 * Fazit
+
+
+---
+
+* WebWorker??

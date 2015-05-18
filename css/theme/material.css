@@ -284,6 +284,9 @@ textarea.code {
 .reveal section img {
   margin: 15px 0px;
 }
+.reveal section.title img {
+  margin: 15px auto;
+}
 
 .reveal a img {
   -webkit-transition: all 0.15s linear;

@@ -164,7 +164,7 @@ FALLBACK:
 					</div>
 					<h2 class="continue">Offlinefähigkeit - Service Worker</h2>
 					<label>serviceWorker.js</label>
-					<textarea class="code flex-expand" spellcheck="false" ng-model="code" ng-model-options="{ debounce: 1000 }"></textarea>
+					<textarea class="code flex-expand" spellcheck="false" ng-model="code" ng-model-options="{ debounce: { default: 1000, blur: 0 }, updateOn: 'default blur' }"></textarea>
 					<div ng-click="register()" class="preface-code">navigator.serviceWorker.register('/serviceWorker.js')</div>
 					<p class="nomargin" style="display:flex">
 						<input type="text" ng-model="url" placeholder="URL" style="flex: 1 1 0">
@@ -177,6 +177,37 @@ FALLBACK:
 					<browser-support chrome="40" chromepart="true"></browser-support>
 				</section>
 
+				<section>
+					<h2>Push API</h2>
+					<!-- <ng-include src="'views/push.html'"></ng-include> -->
+					TODO: Architektur Push Ausbau
+				</section>
+
+				<section>
+					<h2>Push API</h2>
+					<pre style="font-size: 0.85rem; word-break:break-word"><code class="js" data-trim>
+function subscribe(){var e=document.querySelector(".js-push-button");e.disabled=!0,navigator.serviceWorker.ready.then(function(o){o.pushManager.subscribe({userVisibleOnly:!0}).then(function(o){return isPushEnabled=!0,e.textContent="Disable Push Messages",e.disabled=!1,sendSubscriptionToServer(o)})["catch"](function(o){"denied"===Notification.permission?(window.Demo.debug.log("Permission for Notifications was denied"),e.disabled=!0):(window.Demo.debug.log("Unable to subscribe to push.",o),e.disabled=!1,e.textContent="Enable Push Messages")})})}function initialiseState(){return"showNotification"in ServiceWorkerRegistration.prototype?"denied"===Notification.permission?void console.warn("The user has blocked notifications."):"PushManager"in window?void navigator.serviceWorker.ready.then(function(e){e.pushManager.getSubscription().then(function(e){var o=document.querySelector(".js-push-button");o.disabled=!1,e&&(sendSubscriptionToServer(e),o.textContent="Disable Push Messages",isPushEnabled=!0)})["catch"](function(e){console.warn("Error during getSubscription()",e)})}):void console.warn("Push messaging isn't supported."):void console.warn("Notifications aren't supported.")}self.addEventListener("push",function(e){e.waitUntil(fetch(SOME_API_ENDPOINT).then(function(e){if(200!==e.status)throw console.log("Looks like there was a problem. Status Code: "+e.status),new Error;return e.json().then(function(e){if(e.error||!e.notification)throw console.error("The API returned an error.",e.error),new Error;var o=e.notification.title,n=e.notification.message,t=e.notification.icon,i=e.notification.tag;return self.registration.showNotification(o,{body:n,icon:t,tag:i})})})["catch"](function(e){console.error("Unable to retrieve data",e);var o="An error occurred",n="We were unable to get the information for this push message",t=URL_TO_DEFAULT_ICON,i="notification-error";return self.registration.showNotification(o,{body:n,icon:t,tag:i})}))});
+					</code></pre>
+				</section>
+
+				<section class="title">
+					<a style="word-break:break-word; margin:2em" href="https://developers.google.com/web/updates/2015/03/push-notificatons-on-the-open-web">
+					https://developers.google.com/web/updates/2015/03/push-notificatons-on-the-open-web</a>
+					<a href="https://simple-push-demo.appspot.com/" target="_blank" class="fullscreen-button">
+						Demo
+					</a>
+				</section>
+
+				<section>
+					<h2>Push API</h2>
+					<browser-support chrome="42"></browser-support>
+				</section>
+
+				<section class="title">
+					<p>Coming soon to a service worker near you &hellip;</p>
+					<h2>Background Sync</h2>
+				</section>
+				
 				<section class="title">
 					<h2>Storage Technologies</h2>
 				</section>
@@ -270,12 +301,16 @@ window.localStorage.getItem("key");
 				<section>
 					<h2>And More &hellip;</h2>
 					<ul>
-						<li>Clipboard API</li>
-						<li>Media Capture and Stream API</li>
-						<li>WebRTC API</li>
-						<li>Web Cryptography API</li>
-						<li>Web Workers</li>
-						<li>&hellip;</li>
+						<li class="fragment">Clipboard API</li>
+						<li class="fragment">Media Capture and Stream API</li>
+						<li class="fragment">WebRTC API 
+							<a href="https://sharedrop.io" target="_blank" tite="Demo">
+								<i class="fa fa-external-link"></i>
+							</a>
+						</li>
+						<li class="fragment">Web Cryptography API</li>
+						<li class="fragment">Web Workers</li>
+						<li class="fragment">&hellip;</li>
 					</ul>
 				</section>
 

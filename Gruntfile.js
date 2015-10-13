@@ -3,7 +3,7 @@ var bodyParser = require('body-parser');
 /* global module:false */
 module.exports = function(grunt) {
 
-	var port = grunt.option('port') || 4123;
+	var port = grunt.option('port') || 4128;
 
 	var swCode = "";
 

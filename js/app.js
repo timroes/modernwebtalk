@@ -92,6 +92,11 @@ app.controller('ServiceWorkerController', function($scope, $http, localStorageSe
 		});
 	};
 
+	$scope.$watch('code', function(code) {
+		localStorageService.set(lsKey, $scope.code);
+		$http.post('/sw/store', { code: code });
+	});
+
 	$scope.url = "http://api.randomuser.me/";
 
 	$scope.fetch = function() {

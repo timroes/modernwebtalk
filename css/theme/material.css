@@ -1,4 +1,4 @@
-@import url(http://fonts.googleapis.com/css?family=Roboto:400,300,400italic,300italic,500,500italic,700,700italic);
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,300,400italic,300italic,500,500italic,700,700italic);
 /**
  * White theme for reveal.js. This is the opposite of the 'black' theme.
  *
@@ -52,7 +52,7 @@ body {
   max-width: none;
 }
 
-.fullscreen-button {
+.reveal .fullscreen-button {
   position: absolute;
   bottom: 0;
   left: 0;
@@ -71,8 +71,9 @@ body {
   font-size: 1.5rem;
 }
 
-.fullscreen-button:hover {
+.reveal .fullscreen-button:hover {
   background-color: #009688;
+  color: white;
 }
 
 .reveal .teal {
@@ -482,4 +483,9 @@ textarea.code {
 
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
   display: none !important;
+}
+
+.reveal .tinycode  {
+  line-height: normal;
+  font-size: 7px;
 }

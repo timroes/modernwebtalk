@@ -61,6 +61,12 @@ app.controller('MainController', function($scope) {
 
 	$scope.showIframes = false;
 
+	$scope.startBrowserquestVideo = function() {
+		var video = document.getElementById('browserquest_video');
+		video.currentTime = 0;
+		video.play();
+	};
+
 	Reveal.addEventListener('slidechanged', function(ev) {
 		if (ev.currentSlide.id === "preloadIframes") {
 			$scope.$apply(function() {

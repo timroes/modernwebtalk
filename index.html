@@ -39,17 +39,28 @@
 
 		<div class="reveal">
 			<!-- Any section element inside of this container is displayed as a slide -->
+
 			<div class="slides">
-				<section class="title">
-					<h2 class="teal">The Web</h2>
-					<h3 class="teal">Today and Tomorrow</h3>
-					<p>
-						Tim Roes
-					</p>
-					<!-- <button class="fullscreen-button" ng-click="fullscreen()">
-						<i class="fa fa-desktop"></i>
-						Fullscreen
-					</button> -->
+
+				<section>
+					<section class="title">
+						<h2 class="teal">The Web</h2>
+						<h3 class="teal">Today and Tomorrow</h3>
+						<p>
+							Tim Roes
+						</p>
+						<!-- <button class="fullscreen-button" ng-click="fullscreen()">
+							<i class="fa fa-desktop"></i>
+							Fullscreen
+						</button> -->
+					</section>
+
+					<section class="settings">
+						<h2>Settings</h2>
+
+						<label><input type="checkbox" ng-model="brandingInovex" value="true"> inovex</label>
+						<label><input type="checkbox" ng-model="showMotivation" value="true"> Motivation</label>
+					</section>
 				</section>
 
 				<section class="vcenter" on-show="callMe()">
@@ -62,14 +73,14 @@
 					<p>www.timroes.de</p>
 				</section>
 
-				<section class="title">
+				<section class="title" ng-if="showMotivation">
 					<div style="display: flex; flex: 0 1 50%; min-height: 200px; justify-content: center">
 						<div style="background: url(/imgs/limux-logo.png) no-repeat center; background-size: contain; flex: 0 1 25%"></div>
 						<div class="fragment" style="background: url(/imgs/limux-text.png) no-repeat; background-size: contain; flex: 0 1 40%"></div>
 					</div>
 				</section>
 
-				<section class="title">
+				<section class="title" ng-if="showMotivation">
 					<img src="/imgs/iet.png">
 					<!--
 						Problems: Cross Plattform,
@@ -367,12 +378,12 @@ class MyAppComponent {
 					</code></pre>
 				</section>
 
-			<!-- 	<section class="title">
+				<section class="title" ng-if="!brandingInovex">
 					<h2 class="teal">Questions?</h2>
 					<p>www.timroes.de</p>
-				</section> -->
+				</section>
 
-				<section style="background: url(/imgs/inovex.jpg) #FFF; background-size: cover; background-repeat: no-repeat">
+				<section style="background: url(/imgs/inovex.jpg) #FFF; background-size: cover; background-repeat: no-repeat" ng-if="brandingInovex">
 					<div class="img-overlay">
 						<h2 class="teal">Questions?</h2>
 						<p>timroes.de / inovex.de</p>

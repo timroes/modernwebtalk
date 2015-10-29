@@ -55,6 +55,8 @@ app.directive('onShow', function() {
 
 app.controller('MainController', function($scope) {
 
+	$scope.showMotivation = true;
+
 	$scope.fullscreen = function() {
 		document.documentElement.webkitRequestFullscreen();
 	};

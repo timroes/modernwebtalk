@@ -38,7 +38,7 @@ body {
 }
 
 .reveal .slides section.fullslide,
-.reveal .slides > section.title {
+.reveal .slides section.title {
   padding: 0;
 }
 
@@ -97,7 +97,7 @@ textarea.code {
   margin-bottom: 0.2em;
 }
 
-.reveal .slides > section.title,
+.reveal .slides section.title,
 .reveal .slides > section.vcenter {
   display: flex !important;
   flex-direction: column;
@@ -514,4 +514,9 @@ textarea.code {
 .reveal .tinycode  {
   line-height: normal;
   font-size: 7px;
+}
+
+.reveal .settings label {
+  float: none;
+  display: block;
 }

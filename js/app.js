@@ -53,9 +53,13 @@ app.directive('onShow', function() {
 	};
 });
 
-app.controller('MainController', function($scope) {
+app.controller('MainController', function($scope, localStorageService) {
 
-	$scope.showMotivation = true;
+	localStorageService.bind($scope, 'showMotivation');
+	localStorageService.bind($scope, 'brandingInovex');
+
+	$scope.showMotivation = $scope.showMotivation !== 'false' ? true : false;
+	$scope.brandingInovex = $scope.brandingInovex === 'true' ? true : false;
 
 	$scope.fullscreen = function() {
 		document.documentElement.webkitRequestFullscreen();
